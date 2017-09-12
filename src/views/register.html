@@ -1,0 +1,26 @@
+<header class="bar bar-nav">
+    <h1 class="title">BOARDROOM</h1>
+</header>
+
+<nav class="bar bar-standard bar-header-secondary">
+    <div class="segmented-control">
+        <a class="control-item">REGISTER</a>
+    </div>
+</nav>
+
+<div class="content content-padded">
+    <br/>
+    <form data-ng-submit="registerRequest($element.action)">
+        <input type="text" placeholder="Your First Name" required="required" data-ng-model="fname">
+        <input type="text" placeholder="Your Last Name" required="required" data-ng-model="lname">
+        <input type="email" placeholder="Your Email" required="required" data-ng-model="email">
+        <input type="tel" placeholder="Your Phone No." required="required" data-ng-model="phone">
+        <input type="text" placeholder="Company" data-ng-model="company">
+        <input type="password" placeholder="Your Password" required="required" data-ng-model="pass1">
+        <input type="password" placeholder="Confirm Password" required="required" data-ng-model="pass2">
+        <button data-ng-hide="(pass2 != '') && (pass1 != pass2)" class="btn btn-positive btn-nav">Register</button>
+        <a href="#/login/" class="btn btn-negative btn-nav pull-right">Login</a>
+    </form>
+</div>
+
+

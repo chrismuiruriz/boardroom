@@ -1,0 +1,54 @@
+<header class="bar bar-nav">
+    <a href="#/" class="icon icon icon-home pull-left"></a>
+    <h1 class="title">BOARDROOM</h1>
+</header>
+
+<nav class="bar bar-standard bar-header-secondary">
+    <div class="segmented-control">
+        <a class="control-item">{{orderTitle}}</a>
+    </div>
+</nav>
+
+<div class="content">
+    <div class="card">
+
+        <p data-ng-hide="hasOrders" style="padding: 20px;text-align: center;">No Orders to show.</p>
+
+        <ul class="table-view">
+            <li class="table-view-cell media" data-ng-repeat="x in cartItems">
+                <a class="">
+                    <small><small>{{x.realDate}}</small></small>
+                    <div class="media-body">
+                        {{x.productName}} <br/>
+                        Ksh. {{x.productPrice}} x {{x.productQuantity}}
+                    </div>
+                    <span class="badge">Ksh. {{x.productTotal}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="bar bar-standard bar-footer-secondary">
+    <button class="btn btn-block" data-ng-click="openFilterModel()">Filter By Date</button>
+</div>
+
+<div id="filterOrderModal" class="modal">
+    <header class="bar bar-nav">
+        <a class="icon icon-close pull-right" data-ng-click="closeFilterModel()"></a>
+        <h1 class="title">Filter Orders</h1>
+    </header>
+
+    <div class="content content-padded">
+        <form data-ng-submit="filterOrderRequest($element.action)">
+            <p>Select your date range below using this format.</p>
+            <label><small>Date From:</small></label>
+            <input type="text" class="input-row input-pikaday" id="date-from" placeholder="From" readonly data-ng-model="dateFromInput"/>
+
+            <label><small>Date To:</small></label>
+            <input type="text" class="input-row input-pikaday" placeholder="To" id="date-to" readonly data-ng-model="dateToInput"/>
+            <div style="text-align: center;"><button type="submit" class="btn btn-positive btn-nav" style="margin: 0 auto;text-align: center;">Filter</button>
+            </div>
+        </form>
+    </div>
+</div>

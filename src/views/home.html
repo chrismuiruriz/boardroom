@@ -1,0 +1,25 @@
+<header class="bar bar-nav">
+    <a data-ng-click="getDrinksRequest();" class="icon icon-refresh pull-left"></a>
+    <a href="#/orders/" class="icon icon-pages pull-right"></a>
+    <h1 class="title">{{userTitleBar}}</h1>
+</header>
+
+<div class="bar bar-standard bar-header-secondary">
+    <div>
+        <input type="search" placeholder="Filter Drinks" data-ng-model="filterDrinksInput">
+    </div>
+</div>
+
+<div class="content">
+    <div class="card">
+        <p data-ng-hide="hasDrinks" style="padding: 20px;text-align: center;">Connection Error!<br/>Check your data connection & try again.</p>
+
+        <ul class="table-view">
+            <li class="table-view-cell" data-ng-repeat="x in drinks| filter:filterDrinksInput">{{x.productName}}<br/><small>Ksh. {{x.productPrice}}</small> <button class="btn btn-positive" data-ng-click="addToCart($event, x.productId, x.productName)"><span class="icon icon-plus"></span></button></li>
+        </ul>
+    </div>
+</div>
+
+<div class="bar bar-standard bar-footer-secondary" style="bottom: 5px;">
+    <a class="btn btn-block btn-positive" href="#/cart/">My Cart</a>
+</div>

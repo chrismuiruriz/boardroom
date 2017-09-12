@@ -1,0 +1,64 @@
+<header class="bar bar-nav">
+    <a href="#/" class="icon icon icon-left-nav pull-left"></a>
+    <a href="#/orders/" class="icon icon-pages pull-right"></a>
+    <h1 class="title">{{userTitleBar}}</h1>
+</header>
+
+<nav class="bar bar-standard bar-header-secondary">
+  <div class="segmented-control">
+    <a class="control-item">MY CART</a>
+  </div>
+</nav>
+
+<div class="content">
+    <div class="card">
+        <p data-ng-hide="hasCart" style="padding: 20px;text-align: center;">Your cart is empty!</p>
+        <ul class="table-view">
+            <li class="table-view-cell media" data-ng-repeat="x in cartItems" data-ng-click="editCart($event,x.cartId,x.productName,x.productQuantity,x.productPrice,x.productTotal)">
+                <a class="">
+                    <input type="hidden" class="temp-cart-id" value="{{x.tempCartId}}">
+                    <span class="media-object pull-left icon icon-compose"></span>
+                    <div class="media-body">
+                        {{x.productName}} <br/>
+                        Ksh. {{x.productPrice}} x {{x.productQuantity}}
+                    </div>
+                    <span class="badge">{{x.productTotal}}</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="table-view" data-ng-show="hasCart"  style="border-top: 1px solid #ddd;" data-ng-show="showTotal">
+            <li class="table-view-cell">Total Amount <span class="badge">Ksh. {{totalAmountInCart}}</span></li>
+        </ul>
+    </div>
+</div>
+
+<div data-ng-show="hasCart" class="bar bar-standard bar-footer-secondary" style="bottom: 5px;">
+    <button class="btn btn-nav btn-negative" data-ng-click="emptyCartRequest($event)">Empty Cart</button>
+    <button class="btn btn-nav pull-right btn-positive" data-ng-click="confirmCartRequest($event)">Confirm Order</button>
+</div>
+
+<div id="editCartModal" class="modal">
+    <header class="bar bar-nav">
+        <a class="icon icon-close pull-right" data-ng-click="closeCartModel()"></a>
+        <h1 class="title">Edit Item</h1>
+    </header>
+
+    <div class="content content-padded">
+        <form data-ng-submit="editItemRequest($element.action)">
+            <p>{{itemEditName}}</p>
+            <input type="hidden" data-ng-model="itemCartId" readonly>
+            <label><small>Price (Ksh)</small></label>
+            <input type="text" class="input-row" onkeypress='return event.charCode >= 48 && event.charCode <= 57' readonly  placeholder="price" data-ng-model="itemEditPrice"/>
+            
+            <label><small>Quantity</small></label>
+            <input type="text" class="input-row" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Quantity" data-ng-model="itemEditQuantity" ng-change="itemEditTotal=itemEditPrice*itemEditQuantity"/>
+            
+            <label><small>Total</small></label>
+            <input type="text" class="input-row" placeholder="To" readonly data-ng-model="itemEditTotal"/>
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-positive btn-nav" style="margin: 0 auto;text-align: center;">SAVE CHANGES</button>
+                <button type="button" class="btn btn-negative btn-nav" style="margin: 0 auto;text-align: center;" data-ng-click="deleteItemRequest($event)">REMOVE FROM CART</button>
+            </div>
+        </form>
+    </div>
+</div>
