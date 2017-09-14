@@ -637,7 +637,7 @@ boardroomApp.controller('loginController', function ($scope, $http, $location) {
                 localStorage.userId = response.userId;
                 swal({
                     title: 'Login Successful!',
-                    text: "Welcom Back " + response.userFirstName,
+                    text: "Welcome Back " + response.userFirstName,
                     type: 'success',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
@@ -687,7 +687,7 @@ boardroomApp.controller('registerController', function ($scope, $http, $location
                 sessionStorage.sessionUserPass = $scope.pass;
                 swal({
                     title: 'Registration Successful!',
-                    text: "Welcom to Boardroom",
+                    text: "Welcome to Boardroom",
                     type: 'success',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
